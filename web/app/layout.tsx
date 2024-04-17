@@ -8,14 +8,13 @@ import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "GPTs Works - Third-party GPTs store",
-  description:
-    "GPTs Works is a Third-party GPTs store. Support seach GPTs by chatting.",
-  keywords:
-    "GPTs, GPTs store, GPTs Works, ChatGPT, OpenAI GPTs, vector search GPTs",
-};
-
+// export const metadata: Metadata = {
+//   title: "GPTs Works - Third-party GPTs store",
+//   description:
+//     "GPTs Works is a Third-party GPTs store. Support seach GPTs by chatting.",
+//   keywords:
+//     "GPTs, GPTs store, GPTs Works, ChatGPT, OpenAI GPTs, vector search GPTs",
+// };
 export default function RootLayout({
   children,
 }: {
@@ -38,6 +37,7 @@ export default function RootLayout({
           data-domain="gpts.works"
           src="https://plausible.io/js/script.js"
         ></script>
+        {/* <script src="https://seo.box/static/css/tailwind.3.4.1.js" defer></script> */}
       </body>
     </html>
   );

@@ -179,9 +179,10 @@ function formatGpts(row: QueryResultRow): Gpts | undefined {
     console.log("parse gpts detail failed: ", e);
   }
 
-  if (isGptsSensitive(gpts)) {
-    return;
-  }
+  // todo 后续可放开
+  // if (isGptsSensitive(gpts)) {
+  //   return;
+  // }
 
   return gpts;
 }
