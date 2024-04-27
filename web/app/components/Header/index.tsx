@@ -13,9 +13,7 @@ import {useCommonContext} from '~/app/context/common-context'
 
 export default function Header({
                                  locale = '',
-                                 page = '',
-                                 indexLanguageText,
-                                 authLanguageText
+                                 page = ''
                                }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const {setShowLoadingModal} = useCommonContext();
