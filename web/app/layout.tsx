@@ -5,6 +5,8 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import { CommonProvider } from '~/app/context/common-context';
+import { NextAuthProvider } from '~/app/context/next-auth-context';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,9 +29,13 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <main>
+        <NextAuthProvider>
+          <CommonProvider>
           <Header />
           {children}
           <Footer />
+          </CommonProvider>
+          </NextAuthProvider>
         </main>
 
         <script
@@ -37,7 +43,6 @@ export default function RootLayout({
           data-domain="gpts.works"
           src="https://plausible.io/js/script.js"
         ></script>
-        {/* <script src="https://seo.box/static/css/tailwind.3.4.1.js" defer></script> */}
       </body>
     </html>
   );

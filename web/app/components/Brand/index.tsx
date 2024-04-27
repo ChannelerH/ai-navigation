@@ -10,9 +10,9 @@ export default ({ count }: Props) => {
       <div className="mx-auto w-full max-w-7xl px-4 mt-12 md:mt-24">
         <div className="mx-auto w-full max-w-6xl text-center">
           <h2 className="text-3xl font-bold md:text-7xl">
-            Third-party GPTs store
+          Best AI Tools
           </h2>
-          <p className="mt-4 mb-4 md:mt-12 md:mb-8 text:lg md:text-4xl">
+          {/* <p className="mt-4 mb-4 md:mt-12 md:mb-8 text:lg md:text-4xl">
             <span className="text-primary font-bold">{count}</span> fantastic
             GPTs stored
             <a
@@ -22,7 +22,7 @@ export default ({ count }: Props) => {
             >
               Submit yours 👉
             </a>
-          </p>
+          </p> */}
         </div>
       </div>
       {/* <img

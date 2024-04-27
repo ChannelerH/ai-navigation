@@ -3,7 +3,7 @@
 export default () => {
   return (
     <footer className="block">
-      <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24">
+      {/* <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24">
         <div className="flex flex-row justify-between max-[767px]:flex-col max-[767px]:items-start">
           <div className="max-[767px]: w-full max-w-[560px] max-[991px]:mr-4 max-[991px]:flex-initial">
             <h2 className="text-3xl font-bold md:text-5xl">
@@ -45,7 +45,16 @@ export default () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
+       <section className="ezy__copyright7 light py-12 dark:bg-[#0b1727] text-zinc-900">
+        <div className="container px-4">
+        <div className="mb-14 mt-16 w-full [border-bottom:1.7px_solid_rgb(0,_0,_0)]"></div>
+            <div className="flex flex-col sm:flex-row justify-between items-center">
+                <p className="mb-6 sm:mb-0">&#169; Copyright. All rights reserved AI TOOLS</p>
+                <p><i className="fas fa-envelope mr-2"></i>channelerH@gmail.com</p>
+            </div>
+        </div>
+    </section>
     </footer>
   );
 };
