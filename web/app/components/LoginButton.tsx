@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { whiteLoadingSvg, blackLoadingSvg } from './svg';
 import { useCommonContext } from '@/app/context/common-context';
@@ -16,6 +16,12 @@ const LoginButton = ({
 
   const { userData, setUserData, showLoginModal, setShowLoginModal, showLogoutModal, setShowLogoutModal } = useCommonContext()
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (status === 'authenticated' && userData == null) {
+      setUserData(session?.user);
+    }
+  }, [status, userData, session, setUserData]);
 
   async function login(event) {
     event.preventDefault();
