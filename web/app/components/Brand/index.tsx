@@ -13,8 +13,8 @@ export default ({ count }: Props) => {
           Discover Suitable AI Tools
           </h2>
           <p className="mt-4 mb-4 md:mt-12 md:mb-8 text:lg md:text-4xl">
-            <span className="text-primary font-bold">{count}</span>
-             AI Tools
+            {/* <span className="text-primary font-bold">{count}</span>
+             AI Tools */}
             {/* <a
               href="https://github.com/all-in-aigc/gpts-works/issues/5"
               target="_blank"
