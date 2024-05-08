@@ -47,12 +47,12 @@ export default () => {
         </div>
       </div> */}
        <section className="ezy__copyright7 light py-12 dark:bg-[#0b1727] text-zinc-900">
-        <div className="container px-4">
-        <div className="mb-14 mt-16 w-full [border-bottom:1.7px_solid_rgb(0,_0,_0)]"></div>
-            <div className="flex flex-col sm:flex-row justify-between items-center">
+        <div className="px-4">
+          <div className="mb-14 mt-16 w-full [border-bottom:1.7px_solid_rgb(0,_0,_0)]"></div>
+          <div className="flex flex-col sm:flex-row justify-between items-center">
                 <p className="mb-6 sm:mb-0">&#169; Copyright. All rights reserved AI TOOLS</p>
                 <p><i className="fas fa-envelope mr-2"></i>channelerH@gmail.com</p>
-            </div>
+          </div>
         </div>
     </section>
     </footer>

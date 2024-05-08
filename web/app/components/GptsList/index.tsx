@@ -4,7 +4,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { AiTool } from "@/app/types/aiTool";
 import Image from "next/image";
 import { ExternalLinkIcon } from '@heroicons/react/outline';
-
+import './index.css'
+import { Popover } from 'antd';
 interface Props {
   gpts: AiTool[];
   loading: boolean;
@@ -17,31 +18,44 @@ export default ({ gpts, loading }: Props) => {
         {!loading ? (
           <div className="mb-8 gap-5 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {gpts.map((item: AiTool, idx: number) => (
-              <div key={idx} className="relative h-[300px]">
-                <div className="bg-white flex flex-col justify-between card-container hover:shadow-lg hover:scale-105 transition-all rounded-t-2xl rounded-b-2xl">
-                  <div className="flex-shrink-0" style={{ height: "33.33%" }}>
+              <div key={idx} className="relative h-[360px]" style={{overflow:'hidden'}}>
+                <div className="bg-white flex flex-col justify-between card-container hover:shadow-lg hover:scale-105 transition-all rounded-t-2xl rounded-b-2xl"
+                style={{height: '100%'}}>
+                  <div className="flex-shrink-0" style={{ height: '200px'}}>
                     <div className="flex items-center justify-center h-full p-4">
                       <div style={{ width: "100%", height: "100%" }}>
-                        <Image
+                        <img
                           src={item.avatar_url}
                           alt=""
-                          width={100}
-                          height={100}
-                          layout="responsive"
-                          objectFit="cover"
+                          style={{
+                            height: '100%',
+                            width: '100%',
+                            objectFit: 'cover'
+                          }}
                         />
                       </div>
                     </div>
                   </div>
                   <div className="p-4 flex items-center justify-between">
-                  <h6 className="text-base font-semibold">{item.name}</h6>
-                  <a className="ml-auto" href={item.url} target="_blank" rel="noopener noreferrer nofollow" title="AI Tools">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="currentColor">
-                      <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"></path>
-                    </svg>
-                  </a>
-                </div>
-                <p className="p-4 text-sm text-neutral-600">{item.description}</p>
+                    <h6 className="text-base font-semibold">{item.name}</h6>
+                    <a className="ml-auto" href={item.url} target="_blank" rel="noopener noreferrer nofollow" title="AI Tools">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="currentColor">
+                        <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"></path>
+                      </svg>
+                    </a>
+                  </div>
+                  <div className="p-4 text-sm text-neutral-600" style={{flex: 1}}>
+                    <Popover content={item.description} overlayStyle={{
+                      width: '400px'
+                    }}>
+                      <p style={{
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        // whiteSpace: 'nowrap',
+                        height: '36px',
+                      }} className="g-l-item-desc">{item.description}</p>
+                    </Popover>
+                  </div>
                 </div>
               </div>
             ))}
