@@ -2,7 +2,7 @@ import { QueryResult, QueryResultRow, sql } from "@vercel/postgres";
 
 import { Gpts } from "@/app/types/gpts";
 import { isGptsSensitive } from "@/app/services/gpts";
-import { AiTool } from "../types/aiTools";
+import { AiTool } from "@/app/types/aiTool";
 
 export async function createTable() {
   const res = await sql`CREATE TABLE gpts (
@@ -233,7 +233,7 @@ function getToolsFromSqlResult(res: QueryResult<QueryResultRow>): AiTool[] {
 export async function getToolByName(name: string): Promise<Gpts[]> {
   const keyword = `%${name}%`;
   const res =
-    await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY sort DESC LIMIT 50`;
+    await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY id DESC LIMIT 50`;
 
   return getGptsFromSqlResult(res);
 }

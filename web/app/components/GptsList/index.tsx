@@ -1,11 +1,8 @@
 "use client";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { AiTool } from "@/app/types/aiTool";
-import Image from "next/image";
-import { ExternalLinkIcon } from '@heroicons/react/outline';
-import './index.css'
 import { Popover } from 'antd';
+import './index.css';
 interface Props {
   gpts: AiTool[];
   loading: boolean;
@@ -37,7 +34,7 @@ export default ({ gpts, loading }: Props) => {
                     </div>
                   </div>
                   <div className="p-4 flex items-center justify-between">
-                    <h6 className="text-base font-semibold">{item.name}</h6>
+                    <h6 className="text-base font-semibold" title={item.name} >{item.name}</h6>
                     <a className="ml-auto" href={item.url} target="_blank" rel="noopener noreferrer nofollow" title="AI Tools">
                       <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="currentColor">
                         <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"></path>

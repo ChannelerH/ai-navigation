@@ -38,11 +38,11 @@ export default function RootLayout({
           </NextAuthProvider>
         </main>
 
-        <script
+        {/* <script
           defer
           data-domain="gpts.works"
           src="https://plausible.io/js/script.js"
-        ></script>
+        ></script> */}
       </body>
     </html>
   );
