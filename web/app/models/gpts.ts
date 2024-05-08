@@ -205,7 +205,7 @@ export async function getAiToolTotalCount(): Promise<number> {
 export async function getAiTools(  
   last_id: number,
   limit: number
-  ): Promise<AiTool> {
+  ): Promise<AiTool[]> {
   const res =
   await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY id LIMIT ${limit}`;
   
