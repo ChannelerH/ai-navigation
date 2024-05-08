@@ -8,9 +8,10 @@ import GptsList from "./components/GptsList";
 import ProductHunt from "./components/ProductHunt";
 import Search from "./components/Search";
 import Tab from "./components/Tab";
+import { AiTool } from "./types/aiTool";
 
 export default () => {
-  const [gpts, setGpts] = useState<Gpts[]>([]);
+  const [gpts, setGpts] = useState<AiTool[]>([]);
   const [gptsCount, setGptsCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [tabValue, setTabValue] = useState("hot");
@@ -50,7 +51,7 @@ export default () => {
       <Brand count={gptsCount} />
       {/* <ProductHunt /> */}
       <Search setGpts={setGpts} setLoading={setLoading} />
-      <Tab tabValue={tabValue} setTabValue={setTabValue} />
+      {/* <Tab tabValue={tabValue} setTabValue={setTabValue} /> */}
       <GptsList gpts={gpts} loading={loading} />
     </>
   );

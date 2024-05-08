@@ -10,10 +10,10 @@ import {
   useState,
 } from "react";
 
-import { Gpts } from "@/app/types/gpts";
+import { AiTool } from "@/app/types/aiTool";
 
 interface Props {
-  setGpts: Dispatch<SetStateAction<Gpts[]>>;
+  setGpts: Dispatch<SetStateAction<AiTool[]>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
 }
 

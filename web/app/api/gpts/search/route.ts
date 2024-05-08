@@ -1,6 +1,6 @@
 import { respData, respErr } from "@/app/utils/resp";
 
-import { getRowsByName } from "@/app/models/gpts";
+import { getToolByName } from "@/app/models/gpts";
 import { searchGpts } from "@/app/services/gpts";
 
 export async function POST(req: Request) {
@@ -10,18 +10,18 @@ export async function POST(req: Request) {
   }
 
   if (keyword) {
-    const data = await getRowsByName(keyword);
+    const data = await getToolByName(keyword);
     return respData(data);
   }
 
-  const dbData = await getRowsByName(question);
-  const vectorData = await searchGpts(question);
+  const dbData = await getToolByName(question);
+  // const vectorData = await searchGpts(question);
   console.log("dbData", dbData);
-  console.log("vectorData", vectorData);
+  // console.log("vectorData", vectorData);
 
-  const data = mergeArraysUnique(dbData, vectorData);
+  // const data = mergeArraysUnique(dbData, vectorData);
 
-  return respData(data);
+  return respData(dbData);
 }
 
 function mergeArraysUnique<T>(arr1: T[], arr2: T[]): T[] {

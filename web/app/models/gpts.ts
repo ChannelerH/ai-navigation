@@ -2,6 +2,7 @@ import { QueryResult, QueryResultRow, sql } from "@vercel/postgres";
 
 import { Gpts } from "@/app/types/gpts";
 import { isGptsSensitive } from "@/app/services/gpts";
+import { AiTool } from "../types/aiTools";
 
 export async function createTable() {
   const res = await sql`CREATE TABLE gpts (
@@ -185,4 +186,66 @@ function formatGpts(row: QueryResultRow): Gpts | undefined {
   // }
 
   return gpts;
+}
+
+
+export async function getAiToolTotalCount(): Promise<number> {
+  const res = await sql`SELECT count(1) as count FROM ai_tools LIMIT 1`;
+  if (res.rowCount === 0) {
+    return 0;
+  }
+
+  const { rows } = res;
+  const row = rows[0];
+
+  return row.count;
+}
+
+
+export async function getAiTools(  
+  last_id: number,
+  limit: number
+  ): Promise<AiTool> {
+  const res =
+  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY id LIMIT ${limit}`;
+  
+  return getToolsFromSqlResult(res);
+}
+
+
+function getToolsFromSqlResult(res: QueryResult<QueryResultRow>): AiTool[] {
+  if (res.rowCount === 0) {
+    return [];
+  }
+
+  const tools: AiTool[] = [];
+  const { rows } = res;
+  rows.forEach((row) => {
+    const aiTool = formatTools(row);
+    if (aiTool) {
+      tools.push(aiTool);
+    }
+  });
+
+  return tools;
+}
+
+export async function getToolByName(name: string): Promise<Gpts[]> {
+  const keyword = `%${name}%`;
+  const res =
+    await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY sort DESC LIMIT 50`;
+
+  return getGptsFromSqlResult(res);
+}
+
+function formatTools(row: QueryResultRow): AiTool | undefined {
+  const tool: AiTool = {
+    name: row.name,
+    description: row.description,
+    avatar_url: row.avatar_url,
+    url: row.url,
+    tag: row.tag
+  };
+
+  return tool;
 }
