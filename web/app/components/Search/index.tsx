@@ -24,6 +24,10 @@ export default ({ setGpts, setLoading }: Props) => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
+
+    if (e.target.value.trim() === "") {
+      handleSubmit("", "allAiTools");
+    }
   };
 
   const handleInputKeydown = (e: KeyboardEvent<HTMLInputElement>) => {

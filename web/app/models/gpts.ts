@@ -230,12 +230,18 @@ function getToolsFromSqlResult(res: QueryResult<QueryResultRow>): AiTool[] {
   return tools;
 }
 
-export async function getToolByName(name: string): Promise<Gpts[]> {
-  const keyword = `%${name}%`;
-  const res =
-    await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY id DESC LIMIT 50`;
+export async function getToolByName(name: string): Promise<AiTool[]> {
+  let res
+  if (name == 'allAiTools') {
+    res =
+    await sql`SELECT * FROM ai_tools ORDER BY id LIMIT 50`;
+  } else {
+    const keyword = `%${name}%`;
+    res =
+      await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY id LIMIT 50`;
+  }
 
-  return getGptsFromSqlResult(res);
+  return getToolsFromSqlResult(res);
 }
 
 function formatTools(row: QueryResultRow): AiTool | undefined {
