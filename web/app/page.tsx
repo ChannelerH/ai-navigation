@@ -19,12 +19,13 @@ export default () => {
   const fetchGpts = async (tab: string) => {
     const params = {
       last_id: 0,
-      limit: 50,
+      page: 1,
       tab: tab,
+      size: 10
     };
 
     setLoading(true);
-    const resp = await fetch("/api/gpts/all", {
+    const resp = await fetch("/api/gpts/pagination", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

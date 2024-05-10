@@ -1,20 +1,78 @@
 "use client";
 
 import { AiTool } from "@/app/types/aiTool";
-import { Popover } from 'antd';
+import { Button, Spin, Popover } from 'antd';
+import { useState, useEffect } from "react";
 import './index.css';
+import { Noto_Sans_Canadian_Aboriginal } from "next/font/google";
+
 interface Props {
   gpts: AiTool[];
   loading: boolean;
 }
 
 export default ({ gpts, loading }: Props) => {
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [loadedData, setLoadedData] = useState(false);
+  const [hasMoreData, setHasMoreData] = useState(true); 
+  const [loadingMore, setLoadingMore] = useState(false); // 新状态：控制加载更多按钮的加载动画
+
+
+  const [allGpts, setAllGpts] = useState<AiTool[]>([]);
+
+  useEffect(() => {
+    if (allGpts.length == 0) {
+      setAllGpts(gpts);
+    } else {
+      setAllGpts(allGpts);
+    }
+    setTimeout(() => {
+      setLoadedData(true);
+    }, 2500);
+  }, [gpts, allGpts]);
+
+  const fetchMoreGpts = async () => {
+    setLoadingMore(true); // 开始加载更多数据时，设置loadingMore为true
+    const params = {
+      last_id: 0,
+      page: page + 1,
+      size: pageSize
+    };
+
+    try {
+      const resp = await  fetch("/api/gpts/pagination", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(params),
+      });
+
+      if (resp.ok) {
+        const res = await resp.json();
+        if (res.data && res.data.rows.length > 0) {
+          // Update page number and append new data
+          setPage(page + 1);
+          const newData = allGpts.concat(res.data.rows);
+          setAllGpts(newData);
+        } else {
+          // No more data to load, hide the "Load More" button
+          setHasMoreData(false);
+        }
+      }
+
+      setLoadingMore(false); // 数据加载完成后，设置loadingMore为false
+    } catch (error) {
+      console.error("Error fetching more data:", error);
+    }
+  };
+
   return (
     <section className="relative">
       <div className="mx-auto max-w-7xl px-5 py-4 md:px-10 md:py-4 lg:py-4">
-        {!loading ? (
           <div className="mb-8 gap-5 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {gpts.map((item: AiTool, idx: number) => (
+            {allGpts.map((item: AiTool, idx: number) => (
               <div key={idx} className="relative h-[360px]" style={{overflow:'hidden'}}>
                 <div className="bg-white flex flex-col justify-between card-container hover:shadow-lg hover:scale-105 transition-all rounded-t-2xl rounded-b-2xl"
                 style={{height: '100%'}}>
@@ -57,8 +115,20 @@ export default ({ gpts, loading }: Props) => {
               </div>
             ))}
           </div>
+      </div>
+      <div className="text-center">
+      {loading ? (
+          <Spin />
         ) : (
-          <div className="mx-auto text-center">Loading data...</div>
+          loadedData && (
+            hasMoreData ? (
+              <Button onClick={fetchMoreGpts} disabled={loadingMore}>
+                {loadingMore ? <Spin /> : "Load More"}
+              </Button>
+            ) : (
+              <p>No more data available.</p>
+            )
+          )
         )}
       </div>
     </section>

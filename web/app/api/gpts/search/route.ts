@@ -1,7 +1,6 @@
 import { respData, respErr } from "@/app/utils/resp";
 
 import { getToolByName } from "@/app/models/gpts";
-import { searchGpts } from "@/app/services/gpts";
 
 export async function POST(req: Request) {
   const { question, keyword } = await req.json();

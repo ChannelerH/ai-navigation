@@ -3,6 +3,7 @@ import { QueryResult, QueryResultRow, sql } from "@vercel/postgres";
 import { Gpts } from "@/app/types/gpts";
 import { isGptsSensitive } from "@/app/services/gpts";
 import { AiTool } from "@/app/types/aiTool";
+import { off } from "process";
 
 export async function createTable() {
   const res = await sql`CREATE TABLE gpts (
@@ -208,6 +209,21 @@ export async function getAiTools(
   ): Promise<AiTool[]> {
   const res =
   await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY id LIMIT ${limit}`;
+  
+  return getToolsFromSqlResult(res);
+}
+
+
+export async function getAiToolsByPage(  
+  last_id: number,
+  page: number,
+  size: number,
+  ): Promise<AiTool[]> {
+  const offset = (page - 1) * size;
+  const limit = size;
+
+  const res =
+  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY id LIMIT ${limit} offset ${offset}`;
   
   return getToolsFromSqlResult(res);
 }
