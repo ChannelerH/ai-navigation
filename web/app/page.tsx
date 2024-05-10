@@ -21,7 +21,7 @@ export default () => {
       last_id: 0,
       page: 1,
       tab: tab,
-      size: 10
+      size: 50
     };
 
     setLoading(true);

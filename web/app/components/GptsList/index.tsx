@@ -13,7 +13,7 @@ interface Props {
 
 export default ({ gpts, loading }: Props) => {
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(50);
   const [loadedData, setLoadedData] = useState(false);
   const [hasMoreData, setHasMoreData] = useState(true); 
   const [loadingMore, setLoadingMore] = useState(false); // 新状态：控制加载更多按钮的加载动画
