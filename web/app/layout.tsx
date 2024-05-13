@@ -10,13 +10,13 @@ import { NextAuthProvider } from '~/app/context/next-auth-context';
 
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata: Metadata = {
-//   title: "GPTs Works - Third-party GPTs store",
-//   description:
-//     "GPTs Works is a Third-party GPTs store. Support seach GPTs by chatting.",
-//   keywords:
-//     "GPTs, GPTs store, GPTs Works, ChatGPT, OpenAI GPTs, vector search GPTs",
-// };
+export const metadata: Metadata = {
+  title: "Discover The Latest AI Tools",
+  description:
+    "Find The Latest AI Tool, Find the right AI tool for you.",
+  // keywords:
+  //   "GPTs, GPTs store, GPTs Works, ChatGPT, OpenAI GPTs, vector search GPTs",
+};
 export default function RootLayout({
   children,
 }: {
