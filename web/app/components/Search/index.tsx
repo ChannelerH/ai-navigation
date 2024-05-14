@@ -15,9 +15,10 @@ import { AiTool } from "@/app/types/aiTool";
 interface Props {
   setGpts: Dispatch<SetStateAction<AiTool[]>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
+  setGptsCount: Dispatch<SetStateAction<number>>;
 }
 
-export default ({ setGpts, setLoading }: Props) => {
+export default ({ setGpts, setLoading, setGptsCount }: Props) => {
   const [inputDisabled, setInputDisabled] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [content, setContent] = useState("");
@@ -26,7 +27,7 @@ export default ({ setGpts, setLoading }: Props) => {
     setContent(e.target.value);
 
     if (e.target.value.trim() === "") {
-      handleSubmit("", "allAiTools");
+      handleSubmit("", "allAiTools", 50);
     }
   };
 
@@ -34,17 +35,18 @@ export default ({ setGpts, setLoading }: Props) => {
     if (e.code === "Enter" && !e.shiftKey) {
       if (e.keyCode !== 229) {
         e.preventDefault();
-        handleSubmit("", content);
+        handleSubmit("", content, 50);
       }
     }
   };
 
-  const handleSubmit = async (keyword: string, question: string) => {
+  const handleSubmit = async (keyword: string, question: string, limit: number) => {
     try {
       const uri = "/api/gpts/search";
       const params = {
         keyword: keyword,
         question: question,
+        limit: limit,
       };
 
       setLoading(true);
@@ -57,8 +59,9 @@ export default ({ setGpts, setLoading }: Props) => {
       if (resp.ok) {
         const res = await resp.json();
         if (res.data) {
-          setGpts(res.data);
+          setGpts(res.data.rows);
         }
+        setGptsCount(res.data.count);
       }
     } catch (e) {
       console.log("search failed: ", e);
@@ -98,7 +101,7 @@ export default ({ setGpts, setLoading }: Props) => {
             className="absolute right-4 cursor-pointer"
             onClick={() => {
               if (content) {
-                handleSubmit("", content);
+                handleSubmit("", content, 50);
               }
             }}
           >

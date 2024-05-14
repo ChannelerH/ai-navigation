@@ -2,35 +2,40 @@
 
 import { AiTool } from "@/app/types/aiTool";
 import { Button, Spin, Popover } from 'antd';
-import { useState, useEffect } from "react";
+import { 
+  useState, 
+  useEffect,
+  Dispatch,
+  SetStateAction
+ } from "react";
 import './index.css';
 import { Noto_Sans_Canadian_Aboriginal } from "next/font/google";
 
 interface Props {
+  setGpts: Dispatch<SetStateAction<AiTool[]>>;
   gpts: AiTool[];
   loading: boolean;
+  gptsCount: number;
 }
 
-export default ({ gpts, loading }: Props) => {
+export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(50);
+  const size = 50;
+  let isShowLoadingButton = false;
+  if (gptsCount > size) {
+    isShowLoadingButton = true;
+  }
+
+  const [pageSize, setPageSize] = useState(size);
   const [loadedData, setLoadedData] = useState(false);
   const [hasMoreData, setHasMoreData] = useState(true); 
   const [loadingMore, setLoadingMore] = useState(false); // 新状态：控制加载更多按钮的加载动画
 
-
-  const [allGpts, setAllGpts] = useState<AiTool[]>([]);
-
   useEffect(() => {
-    if (allGpts.length == 0) {
-      setAllGpts(gpts);
-    } else {
-      setAllGpts(allGpts);
-    }
     setTimeout(() => {
       setLoadedData(true);
     }, 2500);
-  }, [gpts, allGpts]);
+  }, [gpts]);
 
   const fetchMoreGpts = async () => {
     setLoadingMore(true); // 开始加载更多数据时，设置loadingMore为true
@@ -54,8 +59,8 @@ export default ({ gpts, loading }: Props) => {
         if (res.data && res.data.rows.length > 0) {
           // Update page number and append new data
           setPage(page + 1);
-          const newData = allGpts.concat(res.data.rows);
-          setAllGpts(newData);
+          const newData = gpts.concat(res.data.rows);
+          setGpts(newData);
         } else {
           // No more data to load, hide the "Load More" button
           setHasMoreData(false);
@@ -72,7 +77,7 @@ export default ({ gpts, loading }: Props) => {
     <section className="relative">
       <div className="mx-auto max-w-7xl px-5 py-4 md:px-10 md:py-4 lg:py-4">
           <div className="mb-8 gap-5 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {allGpts.map((item: AiTool, idx: number) => (
+            {gpts.map((item: AiTool, idx: number) => (
               <div key={idx} className="relative h-[360px]" style={{overflow:'hidden'}}>
                 <div className="bg-white flex flex-col justify-between card-container hover:shadow-lg hover:scale-105 transition-all rounded-t-2xl rounded-b-2xl"
                 style={{height: '100%'}}>
@@ -120,7 +125,7 @@ export default ({ gpts, loading }: Props) => {
       {loading ? (
           <Spin />
         ) : (
-          loadedData && (
+          loadedData && isShowLoadingButton && (
             hasMoreData ? (
               <Button onClick={fetchMoreGpts} disabled={loadingMore}>
                 {loadingMore ? <Spin /> : "Load More"}

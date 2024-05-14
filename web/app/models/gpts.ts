@@ -202,6 +202,18 @@ export async function getAiToolTotalCount(): Promise<number> {
   return row.count;
 }
 
+export async function getAiToolTotalCountByName(keyword: string): Promise<number> {
+  const res = await sql`SELECT count(1) as count FROM ai_tools WHERE name ILIKE ${keyword} LIMIT 1`;
+  if (res.rowCount === 0) {
+    return 0;
+  }
+
+  const { rows } = res;
+  const row = rows[0];
+
+  return row.count;
+}
+
 
 export async function getAiTools(  
   last_id: number,
@@ -246,15 +258,15 @@ function getToolsFromSqlResult(res: QueryResult<QueryResultRow>): AiTool[] {
   return tools;
 }
 
-export async function getToolByName(name: string): Promise<AiTool[]> {
+export async function getToolByName(name: string, limit: number): Promise<AiTool[]> {
   let res
   if (name == 'allAiTools') {
     res =
-    await sql`SELECT * FROM ai_tools ORDER BY id LIMIT 50`;
+    await sql`SELECT * FROM ai_tools ORDER BY id LIMIT ${limit}`;
   } else {
     const keyword = `%${name}%`;
     res =
-      await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY id LIMIT 50`;
+      await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY id LIMIT ${limit}`;
   }
 
   return getToolsFromSqlResult(res);

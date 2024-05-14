@@ -51,9 +51,9 @@ export default () => {
     <>
       <Brand count={gptsCount} />
       {/* <ProductHunt /> */}
-      <Search setGpts={setGpts} setLoading={setLoading} />
+      <Search setGpts={setGpts} setLoading={setLoading} setGptsCount={setGptsCount} />
       {/* <Tab tabValue={tabValue} setTabValue={setTabValue} /> */}
-      <GptsList gpts={gpts} loading={loading} />
+      <GptsList setGpts={setGpts} gpts={gpts} gptsCount={gptsCount} loading={loading} />
     </>
   );
 };
