@@ -46,15 +46,36 @@ export default () => {
           </div>
         </div>
       </div> */}
-       <section className="ezy__copyright7 light py-12 dark:bg-[#0b1727] text-zinc-900">
-        <div className="px-4">
+       {/* <section className="ezy__copyright7 light py-12 dark:bg-[#0b1727] text-zinc-900"> */}
+        {/* <div className="px-4">
           <div className="mb-14 mt-16 w-full [border-bottom:1.7px_solid_rgb(0,_0,_0)]"></div>
           <div className="flex flex-col sm:flex-row justify-between items-center">
                 <p className="mb-6 sm:mb-0">&#169; Copyright. All rights reserved AI TOOLS</p>
                 <p><i className="fas fa-envelope mr-2"></i>channelerH@gmail.com</p>
           </div>
-        </div>
-    </section>
+        </div> */}
+
+        <footer className="bg-white text-zinc-600 py-8">
+  <div className="max-w-screen-xl mx-auto px-4 flex flex-col items-center gap-4">
+    <div>
+      <div className="select-none flex items-center">
+      <a className="bg-cover bg-center px-20 py-5  cursor-pointer" href="/"
+            style={{
+              backgroundImage: "url('/website.png')",
+            }}>
+						</a>
+      </div>
+    </div>
+    <p className="text-base text-center text-zinc-500 mx-auto max-w-2xl"> Find the best and suitable AI Tools. </p>
+    <ul className="flex flex-1 min-w-0 justify-center items-center gap-8">
+      <li><a className="text-zinc-900 hover:text-blue-500" href="/">Home</a></li>
+      <li><a className="text-zinc-900 hover:text-blue-500" href="/privacy">About</a></li>
+      <li><a className="text-zinc-900 hover:text-blue-500" href="/contact">Contact</a></li>
+    </ul>
+    <div className="text-sm text-zinc-500 text-center">© 2024 AI Tools. All Rights Reserved.</div>
+  </div>
+</footer>
+    {/* </section> */}
     </footer>
   );
 };

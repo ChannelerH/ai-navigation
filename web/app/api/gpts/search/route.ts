@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   const dbData = await getToolByName(question, limit);
   const dbCount = getAiToolTotalCountByName(question);
   // const vectorData = await searchGpts(question);
-  console.log("dbData", dbData);
+  // console.log("dbData", dbData);
   // console.log("vectorData", vectorData);
 
   // const data = mergeArraysUnique(dbData, vectorData);

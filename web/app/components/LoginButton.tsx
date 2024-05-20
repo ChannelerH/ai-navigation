@@ -67,7 +67,9 @@ const LoginButton = ({
                     className="inline-flex w-full justify-center gap-x-1.5 border border-[rgba(255,255,255,0.5)] rounded-md px-3 py-2 text-sm font-semibold hover:border-[rgba(255,255,255,0.9)]"
                     onClick={login}
                   >
+                  <span className="inline-block border border-gray-300 rounded-md px-2 py-1 hover:border-black">
                     {loginText}
+                  </span>
                   </button>
                 )
             }

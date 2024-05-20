@@ -56,14 +56,11 @@ const LoginModal = ({
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title as="h3"
                                   className="gradient-text text-3xl font-bold flex justify-center items-center">
-                      <a className="-m-1.5 ml-0.5 p-1.5">
-                        {/* <Image
-                          className="h-8 w-auto"
-                          src="/aiTool.png"
-                          width={32}
-                          height={24}
-                          alt="Whooper"/> */}
-                          AI Tools
+                    
+                      <a className="bg-cover bg-center px-20 py-5  cursor-pointer" href="/"
+                      style={{
+                        backgroundImage: "url('/website.png')",
+                      }}>
                       </a>
                     </Dialog.Title>
                     <div className="mt-2">
