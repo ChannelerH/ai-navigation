@@ -14,9 +14,8 @@ export default () => {
       </p>
       <ul>
         <li>
-          <strong>Personal Information</strong>: This may include your name,
-          email address, and any other information you provide when using our
-          Extension.
+          This may include your name, email address, and any other information you 
+          provide when using this website.
         </li>
       </ul>
       <p>
