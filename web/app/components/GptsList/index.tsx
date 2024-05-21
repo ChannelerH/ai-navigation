@@ -75,7 +75,7 @@ export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
 
   return (
     <section className="relative">
-      <div className="mx-auto max-w-7xl px-5 py-4 md:px-10 md:py-4 lg:py-4">
+      <div className="mx-auto max-w-7xl px-5 py-4 md:px-10 md:py-4 lg:py-4" style={{minHeight: 'calc(100vh - 400px)'}}>
           <div className="mb-8 gap-5 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {gpts.map((item: AiTool, idx: number) => (
               <div key={idx} className="relative h-[360px]" style={{overflow:'hidden'}}>
@@ -121,7 +121,10 @@ export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
             ))}
           </div>
       </div>
-      <div className="text-center">
+      <div className="text-center" style={{position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'}}>
       {loading ? (
           <Spin />
         ) : (
