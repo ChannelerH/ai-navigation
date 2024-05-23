@@ -1,14 +1,12 @@
 "use client";
 
 import {useState} from 'react'
-import { BsGithub, BsTwitter } from "react-icons/bs";
-
-import { usePathname } from "next/navigation";
 import GeneratingModal from "../GeneratingModal";
 import LoadingModal from "../LoadingModal";
 import LoginButton from '../LoginButton';
 import LoginModal from '../LoginModal';
 import LogoutModal from "../LogoutModal";
+import Submit from "@/app/submit/page";
 import {useCommonContext} from '~/app/context/common-context'
 
 export default function Header({
@@ -18,6 +16,7 @@ export default function Header({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const {setShowLoadingModal} = useCommonContext();
   const {userData} = useCommonContext();
+
 
   return (
     <header className="bg-white text-zinc-900">
@@ -31,6 +30,10 @@ export default function Header({
             }}>
 						</a>
       <div>
+      <div className="flex items-center space-x-2">
+        <a className="px-5 py-5 text-gray-500 hover:text-gray-800" href="/submit">
+              Submit
+        </a>
       <LoadingModal/>
       <GeneratingModal/>
       <LoginModal/>
@@ -38,6 +41,7 @@ export default function Header({
       <div className="hidden lg:ml-2 lg:relative lg:inline-block lg:text-left ">
           <LoginButton buttonType={userData ? 1 : 0} />
         </div>
+     </div>
      </div>
 </div>
 </nav>

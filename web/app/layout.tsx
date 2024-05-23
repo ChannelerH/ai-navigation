@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import { CommonProvider } from '~/app/context/common-context';
 import { NextAuthProvider } from '~/app/context/next-auth-context';
+import { Toaster } from '@/app/components/Ui/sonner';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,17 @@ export default function RootLayout({
       <body className={inter.className}>
         <main>
         <NextAuthProvider>
+        <Toaster
+            position='top-center'
+            toastOptions={{
+              classNames: {
+                error: 'bg-red-400',
+                success: 'text-green-400',
+                warning: 'text-yellow-400',
+                info: 'bg-blue-400',
+              },
+            }}
+          />
           <CommonProvider>
           <Header />
           {children}

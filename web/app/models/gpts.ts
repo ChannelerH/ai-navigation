@@ -283,3 +283,13 @@ function formatTools(row: QueryResultRow): AiTool | undefined {
 
   return tool;
 }
+
+export async function insertAiTool(name: string, url: string, username: string, email: string) {
+  const res = await sql`INSERT INTO ai_tools 
+    (name, url, username, email) 
+    VALUES 
+    (${name}, ${url}, ${username}, ${email})
+`;
+
+  return res;
+}
