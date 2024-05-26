@@ -122,7 +122,8 @@ export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
           </div>
       </div>
       <div className="text-center" style={{position: 'absolute',
-        top: '50%',
+        // top: '50%',
+        bottom: '10px',
         left: '50%',
         transform: 'translate(-50%, -50%)'}}>
       {loading ? (
