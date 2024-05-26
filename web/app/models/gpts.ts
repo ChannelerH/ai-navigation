@@ -220,7 +220,7 @@ export async function getAiTools(
   limit: number
   ): Promise<AiTool[]> {
   const res =
-  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY id LIMIT ${limit}`;
+  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY weight desc, id  LIMIT ${limit}`;
   
   return getToolsFromSqlResult(res);
 }
@@ -235,7 +235,7 @@ export async function getAiToolsByPage(
   const limit = size;
 
   const res =
-  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY id LIMIT ${limit} offset ${offset}`;
+  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY weight desc, id LIMIT ${limit} offset ${offset}`;
   
   return getToolsFromSqlResult(res);
 }
@@ -262,11 +262,11 @@ export async function getToolByName(name: string, limit: number): Promise<AiTool
   let res
   if (name == 'allAiTools') {
     res =
-    await sql`SELECT * FROM ai_tools ORDER BY id LIMIT ${limit}`;
+    await sql`SELECT * FROM ai_tools ORDER BY weight desc, id LIMIT ${limit}`;
   } else {
     const keyword = `%${name}%`;
     res =
-      await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY id LIMIT ${limit}`;
+      await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY weight desc, id LIMIT ${limit}`;
   }
 
   return getToolsFromSqlResult(res);
