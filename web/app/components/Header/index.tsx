@@ -20,6 +20,7 @@ export default function Header({
 
   return (
     <header className="bg-white text-zinc-900">
+    <link rel="canonical" href="https://aitool.tools/"/>
  <section>
   <div className="h-auto w-screen"> 
   <nav className="font-inter mx-auto h-auto w-full max-w-[1600px] lg:relative lg:top-0">

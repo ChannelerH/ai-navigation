@@ -12,9 +12,9 @@ import { Toaster } from '@/app/components/Ui/sonner';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Discover The Latest AI Tools",
+  title: "AITool Diectory: List of The Best & Latest AI Tools",
   description:
-    "Find The Latest AI Tool, Find the right AI tool for you.",
+    "Find The Best & Latest AI Tool, Explore the right AI tool for you. AI Tools list is auto updated by ChatGPT.",
   // keywords:
   //   "GPTs, GPTs store, GPTs Works, ChatGPT, OpenAI GPTs, vector search GPTs",
 };

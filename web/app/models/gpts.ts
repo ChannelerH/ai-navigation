@@ -191,7 +191,7 @@ function formatGpts(row: QueryResultRow): Gpts | undefined {
 
 
 export async function getAiToolTotalCount(): Promise<number> {
-  const res = await sql`SELECT count(1) as count FROM ai_tools LIMIT 1`;
+  const res = await sql`SELECT count(1) as count FROM ai_tools where description != '' and avatar_url != '' LIMIT 1`;
   if (res.rowCount === 0) {
     return 0;
   }
@@ -203,7 +203,7 @@ export async function getAiToolTotalCount(): Promise<number> {
 }
 
 export async function getAiToolTotalCountByName(keyword: string): Promise<number> {
-  const res = await sql`SELECT count(1) as count FROM ai_tools WHERE name ILIKE ${keyword} LIMIT 1`;
+  const res = await sql`SELECT count(1) as count FROM ai_tools WHERE name ILIKE ${keyword} and description != '' and avatar_url != '' LIMIT 1`;
   if (res.rowCount === 0) {
     return 0;
   }
@@ -220,7 +220,7 @@ export async function getAiTools(
   limit: number
   ): Promise<AiTool[]> {
   const res =
-  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY weight desc, id  LIMIT ${limit}`;
+  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} and description != '' and avatar_url != '' ORDER BY weight desc, created_at desc, id  LIMIT ${limit}`;
   
   return getToolsFromSqlResult(res);
 }
@@ -235,7 +235,7 @@ export async function getAiToolsByPage(
   const limit = size;
 
   const res =
-  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} ORDER BY weight desc, id LIMIT ${limit} offset ${offset}`;
+  await sql`SELECT * FROM ai_tools WHERE id > ${last_id} and description != '' and avatar_url != '' ORDER BY weight desc, created_at desc, id LIMIT ${limit} offset ${offset}`;
   
   return getToolsFromSqlResult(res);
 }
@@ -262,11 +262,11 @@ export async function getToolByName(name: string, limit: number): Promise<AiTool
   let res
   if (name == 'allAiTools') {
     res =
-    await sql`SELECT * FROM ai_tools ORDER BY weight desc, id LIMIT ${limit}`;
+    await sql`SELECT * FROM ai_tools where description != '' and avatar_url != '' ORDER BY weight desc, created_at desc, id LIMIT ${limit}`;
   } else {
     const keyword = `%${name}%`;
     res =
-      await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} ORDER BY weight desc, id LIMIT ${limit}`;
+      await sql`SELECT * FROM ai_tools WHERE name ILIKE ${keyword} and description != '' and avatar_url != '' ORDER BY weight desc, created_at desc, id LIMIT ${limit}`;
   }
 
   return getToolsFromSqlResult(res);
