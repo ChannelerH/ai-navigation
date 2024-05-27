@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import { CommonProvider } from '~/app/context/common-context';
 import { NextAuthProvider } from '~/app/context/next-auth-context';
 import { Toaster } from '@/app/components/Ui/sonner';
+import SeoScript from '@/app/components/Seo/SeoScript';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,6 +51,7 @@ export default function RootLayout({
           </NextAuthProvider>
         </main>
 
+        <SeoScript />
         {/* <script
           defer
           data-domain="gpts.works"
