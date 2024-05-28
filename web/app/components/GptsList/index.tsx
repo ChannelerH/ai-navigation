@@ -92,7 +92,7 @@ export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
                             width: '100%',
                             objectFit: 'cover'
                           }}
-                        />
+                          rel="nofollow"/>
                       </div>
                     </div>
                   </div>

@@ -71,6 +71,7 @@ export default () => {
       <li><a className="text-zinc-900 hover:text-blue-500" href="/">Home</a></li>
       <li><a className="text-zinc-900 hover:text-blue-500" href="/privacy">About</a></li>
       <li><a className="text-zinc-900 hover:text-blue-500" href="/contact">Contact</a></li>
+      <li><a href="https://woy.ai/" title="Woy AI Tools Directory">Woy AI</a></li>
     </ul>
     <div className="text-sm text-zinc-500 text-center">© 2024 AI Tools. All Rights Reserved.</div>
   </div>
