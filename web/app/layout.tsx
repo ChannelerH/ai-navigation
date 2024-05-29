@@ -13,7 +13,7 @@ import SeoScript from '@/app/components/Seo/SeoScript';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AITool Diectory: List of The Best & Latest AI Tools",
+  title: "AixyAI Diectory: List of The Best & Latest AI Tools",
   description:
     "Find The Best & Latest AI Tool, Explore the right AI tool for you. AI Tools list is auto updated by ChatGPT.",
   // keywords:

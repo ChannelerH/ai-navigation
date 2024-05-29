@@ -2,12 +2,12 @@ export default () => {
   return (
     <div className="max-w-xl mx-auto prose break-words dark:prose-invert light py-8 leading-loose">
       <p>
-        <strong>Privacy Policy for AI Tool</strong>
+        <strong>Privacy Policy for Aixy AI</strong>
       </p>
       <p>Effective Date: 2024/05/20</p>
       <p>
         This Privacy Policy describes how we collects, uses, and discloses
-        information through AI Tool.
+        information through Aixy AI.
       </p>
       <p>
         <strong>1. Information Collection</strong>

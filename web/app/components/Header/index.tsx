@@ -32,7 +32,7 @@ export default function Header({
 						</a>
       <div>
       <div className="flex items-center space-x-2">
-        <a className="px-5 py-5 text-gray-500 hover:text-gray-800" href="/submit">
+        <a className="px-5 py-5 text-gray-500 hover:text-gray-800" href="/submit" title='submit'>
               Submit
         </a>
       <LoadingModal/>

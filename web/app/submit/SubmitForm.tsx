@@ -91,7 +91,7 @@ export default function SubmitForm({ className }: { className?: string }) {
                 <FormLabel>Website Name</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder='AI Tool'
+                    placeholder='Aixy AI'
                     className='input-border-pink h-[42px] w-full rounded-[8px] border-[0.5px] bg-dark-bg p-5'
                     {...field}
                   />

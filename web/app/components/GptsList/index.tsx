@@ -86,7 +86,7 @@ export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
                       <div style={{ width: "100%", height: "100%" }}>
                         <img
                           src={item.avatar_url}
-                          alt={`AITool - ${item.name}`}
+                          alt={item.name}
                           style={{
                             height: '100%',
                             width: '100%',
