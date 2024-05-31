@@ -68,9 +68,9 @@ export default () => {
     </div>
     <p className="text-base text-center text-zinc-500 mx-auto max-w-2xl"> Find the best and suitable AI Tools. </p>
     <ul className="flex flex-1 min-w-0 justify-center items-center gap-8">
-      <li><a className="text-zinc-900 hover:text-blue-500" href="/">Home</a></li>
-      <li><a className="text-zinc-900 hover:text-blue-500" href="/privacy">About</a></li>
-      <li><a className="text-zinc-900 hover:text-blue-500" href="/contact">Contact</a></li>
+      <li><a className="text-zinc-900 hover:text-blue-500" href="/" title="Aixy AI">Home</a></li>
+      <li><a className="text-zinc-900 hover:text-blue-500" href="/privacy" title="Aixy AI Privacy">About</a></li>
+      <li><a className="text-zinc-900 hover:text-blue-500" href="/contact" title="Aixy AI Contact">Contact</a></li>
       <li><a href="https://woy.ai/" title="Woy AI Tools Directory">Woy AI</a></li>
     </ul>
     <div className="text-sm text-zinc-500 text-center">© 2024 Aixy AI. All Rights Reserved.</div>
