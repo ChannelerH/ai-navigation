@@ -9,7 +9,7 @@ import {
   SetStateAction
  } from "react";
 import './index.css';
-import { Noto_Sans_Canadian_Aboriginal } from "next/font/google";
+import Link from "next/link";
 
 interface Props {
   setGpts: Dispatch<SetStateAction<AiTool[]>>;
@@ -77,7 +77,13 @@ export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
     <section className="relative">
       <div className="mx-auto max-w-7xl px-5 py-4 md:px-10 md:py-4 lg:py-4" style={{minHeight: 'calc(100vh - 400px)'}}>
           <div className="mb-8 gap-5 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {gpts.map((item: AiTool, idx: number) => (
+            {gpts.map((item: AiTool, idx: number) => {
+              let skip_url = item.url
+              if (item.nick_name) {
+                  skip_url = `/p/${item.nick_name}`
+              }
+              return (
+              <Link href={skip_url} target="_blank" key={idx}>
               <div key={idx} className="relative h-[360px]" style={{overflow:'hidden'}}>
                 <div className="bg-white flex flex-col justify-between card-container hover:shadow-lg hover:scale-105 transition-all rounded-t-2xl rounded-b-2xl"
                 style={{height: '100%'}}>
@@ -98,11 +104,18 @@ export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
                   </div>
                   <div className="p-4 flex items-center justify-between">
                     <h6 className="text-base font-semibold">{item.name}</h6>
-                    <a className="ml-auto" href={item.url} target="_blank" rel="noopener noreferrer nofollow" title="AI Tools">
+                    <button 
+                    className="ml-auto" 
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      window.open(item.url, '_blank', 'noopener,noreferrer');
+                    }}
+                     title="Aixy AI" 
+                     style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                       <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="currentColor">
                         <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"></path>
                       </svg>
-                    </a>
+                    </button>
                   </div>
                   <div className="p-4 text-sm text-neutral-600" style={{flex: 1}}>
                     <Popover content={item.description} overlayStyle={{
@@ -118,7 +131,8 @@ export default ({ setGpts, gpts, gptsCount, loading }: Props) => {
                   </div>
                 </div>
               </div>
-            ))}
+              </Link>
+            )})}
           </div>
       </div>
       <div className="text-center" style={{position: 'absolute',

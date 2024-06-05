@@ -2,7 +2,7 @@ import { QueryResult, QueryResultRow, sql } from "@vercel/postgres";
 
 import { Gpts } from "@/app/types/gpts";
 import { isGptsSensitive } from "@/app/services/gpts";
-import { AiTool } from "@/app/types/aiTool";
+import { AiTool, AiToolDetail } from "@/app/types/aiTool";
 import { off } from "process";
 
 export async function createTable() {
@@ -278,7 +278,8 @@ function formatTools(row: QueryResultRow): AiTool | undefined {
     description: row.description,
     avatar_url: row.avatar_url,
     url: row.url,
-    tag: row.tag
+    tag: row.tag,
+    nick_name: row.nick_name
   };
 
   return tool;
@@ -292,4 +293,24 @@ export async function insertAiTool(name: string, url: string, username: string, 
 `;
 
   return res;
+}
+
+export async function findByNickName(nick_name: string): Promise<AiTool>{
+  const res = await sql`SELECT * FROM ai_tools WHERE nick_name = ${nick_name} and description != '' and avatar_url != '' ORDER BY weight desc, created_at desc, id`;
+  return formatTools(res.rows[0]);
+}
+
+export async function findDetailByNickName(nick_name: string): Promise<AiToolDetail> {
+  const res = await sql`SELECT * FROM ai_tool_detail WHERE nick_name = ${nick_name}`;
+  return formatToolDetail(res.rows[0]);
+}
+
+function formatToolDetail(row: QueryResultRow): AiToolDetail | undefined {
+  const detail: AiToolDetail = {
+    nick_name: row.nick_name,
+    introduction: row.introduction,
+    features: row.features
+  };
+
+  return detail;
 }

@@ -4,5 +4,6 @@ export interface AiTool {
     avatar_url: string;
     url: string;
     tag: string;
+    nick_name: string;
   }
   
