@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default ({ tool, detail}: Props) => {
-
+  
   return (
     <section>
       <div className="block overflow-hidden">
@@ -102,8 +102,8 @@ export default ({ tool, detail}: Props) => {
               <div className="link-text text-lg font-bold max-w-5xl mx-auto mt-8">
                 <h2>{tool.name} Features</h2>
               </div>
-              <div className="prose w-full max-w-5xl mx-auto mt-8 div-markdown-color" style={{ whiteSpace: 'pre-wrap' }}>
-                 {detail.features}
+              <div className="prose w-full max-w-5xl mx-auto mt-8 div-markdown-color" style={{ whiteSpace: 'pre-wrap' }}
+              dangerouslySetInnerHTML={{__html: detail.features.replaceAll('\\n', '<br \>')}}>
               </div>
             </div>
           </div>
