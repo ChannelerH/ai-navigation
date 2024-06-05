@@ -7,3 +7,8 @@ export interface AiTool {
     nick_name: string;
   }
   
+  export interface AiToolDetail {
+    nick_name: string;
+    introduction: string;
+    features: string;
+  }
