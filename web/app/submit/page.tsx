@@ -27,7 +27,7 @@ export default function Page() {
           className="text-[#f05011] text-xl inline-flex"
           style={{ textAlign: 'left', unicodeBidi: 'bidi-override' }}
         >
-          &lt;a href="https://aitool.tools/" title="Aixy AI Tools Directory"&gt;Aixy AI&lt;/a&gt;
+           {'<a href="https://aitool.tools/" title="Aixy AI Tools Directory">Aixy AI</a>'}
         </span>
         <span> to your website homepage, And then you can submit your website successfully for free!</span>
       </div>
