@@ -72,6 +72,8 @@ export default () => {
       <li><a className="text-zinc-900 hover:text-blue-500" href="/privacy" title="Aixy AI Privacy">About</a></li>
       <li><a className="text-zinc-900 hover:text-blue-500" href="/contact" title="Aixy AI Contact">Contact</a></li>
       <li><a href="https://woy.ai/" title="Woy AI Tools Directory">Woy AI</a></li>
+      <li><a href="https://aitool.tools/p/GPT-4o" title="GPT-4o Introduction">GPT-4o</a></li>
+      <li><a href="https://aitool.tools/p/ChatTTS" title="ChatTTS Introduction">ChatTTS</a></li>
     </ul>
     <div className="text-sm text-zinc-500 text-center">© 2024 Aixy AI. All Rights Reserved.</div>
   </div>
